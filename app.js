@@ -25,7 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-  origin: '*', // 모든 출처 허용 옵션. true 를 써도 된다.
+  origin: 'http://127.0.0.1:5173',
+  credentials: 'true'
 }));
 
 // db연결
@@ -48,11 +49,12 @@ app.use(express.static('public'))
 app.use(express.static('./public/css'))
 app.use(express.static('./public/js'))
 
-app.all('/*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
+// app.all('/*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next();
+// });
+
 
 // test chat
 
