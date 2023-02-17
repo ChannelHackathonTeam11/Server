@@ -78,7 +78,7 @@ async function getResult(lng, lat) {
 
         const result = getDistance(user_lat, user_lng, lat, lng);
 
-        if (result / 1000 > 1) {
+        if (result / 500 > 1) {
             hong = true
             break
         }
