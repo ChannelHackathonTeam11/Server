@@ -26,7 +26,7 @@ router.post("/create", async (req, res) => {
         });
 });
 
-// 자신의 채팅방 리스트 요청
+// 자신의 채팅방 상대방 이름, 상대방 이미지
 router.post('/list', async(req, res) => {
 
     const user_to = await models.Chat.findAll({
@@ -46,19 +46,20 @@ router.post('/list', async(req, res) => {
     for (const key in user_from) {
 
         const user_id = user_from[key].dataValues.to
-
+        const room_id = user_from[key].dataValues.room_id
         const user_image = await models.User.findOne({
             where: { 
                 user_id: user_id,
             },
         });
 
-        arr.push({user_id, user_image});
+        arr.push({user_id, user_image, room_id});
     }
 
     for (const key in user_to) {
 
         const user_id = user_to[key].dataValues.from
+        const room_id = user_from[key].dataValues.room_id
 
         const user_image = await models.User.findOne({
             where: { 
@@ -66,9 +67,9 @@ router.post('/list', async(req, res) => {
             },
         });
 
-        arr.push({user_id, user_image});
+        arr.push({user_id, user_image, room_id});
     }
-    
+
     res.status(200).json(arr);
     
 
