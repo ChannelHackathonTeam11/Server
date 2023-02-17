@@ -19,63 +19,28 @@ router.get('/', (req, res, next) => {
 
 // 유저 이미지, 제목, 위도, 경도만 조회
 router.get('/summary', async (req, res, next) => {
-    let list = await models.Contents.findAll();
 
-    console.log(list);
-
-    const arr = []
-
-    const hong = false
-    for (const key in list) {
-
-        const user_lng = list[key].dataValues.lng
-        const user_lat = list[key].dataValues.lat
-        
-        const a = (user_lng - req.body.lng) * (user_lng - req.body.lng)
-        const b = (user_lat - req.body.lat) * (user_lat - req.body.lat)
-        const c = Math.sqrt(a + b)
-        // arr.push({ user_id, user_image, room_id });
-        // console.log(c);
-
-        const result =   getDistance(user_lat, user_lng, req.body.lat,req.body.lng);
-
-        if (result/1000 >  1)
-        {
-            hong = true
-            break
-        }
-    }
-
-    if (hong === false)
-    {
-        await models.Contents.findAll({
-            attributes: [
-                'title',
-                'user_image',
-                'lng',
-                'lat',
-                'uuid',
-            ]
+    await models.Contents.findAll({
+        attributes: [
+            'title',
+            'user_image',
+            'lng',
+            'lat',
+            'uuid',
+        ]
+    })
+        .then((data) => {
+            data.filter(getResult(data.dataValues.lng,data.dataValues.lat))
+            res.status(200).json({
+                result: true,
+                data: data,
+            });
         })
-            .then((data) => {
-                res.status(200).json({
-                    result: true,
-                    data: data,
-                });
-            })
-            .catch((err) => {
-                console.error(err);
-                next(err);
-            })
-    }
-    else
-    {
-        res.status(500).json({
-            result: false,
-        });
-    }
-    
-    
+        .catch((err) => {
+            console.error(err);
+            next(err);
+        })
+
 });
 
 // 마커 클릭시 본문 내용
@@ -97,6 +62,33 @@ router.post('/main', (req, res, next) => {
             });
         })
 });
+
+async function getResult(lng, lat) {
+
+    let list = await models.Contents.findAll();
+
+    const arr = []
+
+    const hong = false
+
+    for (const key in list) {
+
+        const user_lng = list[key].dataValues.lng
+        const user_lat = list[key].dataValues.lat
+
+        const result = getDistance(user_lat, user_lng, lat, lng);
+
+        if (result / 1000 > 1) {
+            hong = true
+            break
+        }
+    }
+
+    if (hong == true)
+        return false;
+    else
+        return true;
+}
 
 function getDistance(lat1, lon1, lat2, lon2) {
     if ((lat1 == lat2) && (lon1 == lon2))
@@ -122,29 +114,29 @@ function getDistance(lat1, lon1, lat2, lon2) {
 // 글등록
 router.post("/write", async (req, res) => {
 
-      const writeInfo = {
+    const writeInfo = {
         user_id: req.body.user_id,
-        title : req.body.title,
-        text : req.body.text,
-        text_image : req.body.text_image,
-        create_time : "0000-00-00 00:00:00",
-        like : 0,
-        lng : req.body.lng,
-        lat : req.body.lat,
-        check : 0,
+        title: req.body.title,
+        text: req.body.text,
+        text_image: req.body.text_image,
+        create_time: "0000-00-00 00:00:00",
+        like: 0,
+        lng: req.body.lng,
+        lat: req.body.lat,
+        check: 0,
 
-      };
+    };
 
-      models.Contents.create(writeInfo)
+    models.Contents.create(writeInfo)
         .then((result) => {
-          res.status(200).json(result);
+            res.status(200).json(result);
         })
         .catch((err) => {
-          console.log(err);
-          res.status(500).send({
-            result: false,
-            message: "글 등록오류가 발생하였습니다.",
-          });
+            console.log(err);
+            res.status(500).send({
+                result: false,
+                message: "글 등록오류가 발생하였습니다.",
+            });
         });
 });
 
@@ -177,7 +169,8 @@ router.post('/like', async (req, res, next) => {
 // 욕설 감지
 router.post('/curse', async (req, res, next) => {
 
-   
+
+
 
     console.log(res);
 });
