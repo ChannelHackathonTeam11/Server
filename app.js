@@ -49,6 +49,12 @@ app.use(express.static('public'))
 app.use(express.static('./public/css'))
 app.use(express.static('./public/js'))
 
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 // test chat
 
 io.on('connection', (socket) => {
