@@ -73,7 +73,7 @@ io.on('connection', (socket) => {
       where: { room_id: data.room_id },
     });
 
-    socket.to(data).emit("join_room", result.dataValues);
+    socket.to(data.room_id).emit("join_room", result.dataValues);
 
     console.log(result.dataValues);
     console.log(`유저의 아이디 : ${socket.id} 가 ${data}방에 들어옴`);
