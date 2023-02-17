@@ -11,10 +11,10 @@ router.post("/create", async (req, res) => {
         to: req.body.to,
     };
     models.Chat.create(roomInfo)
-        .then((result) => { 
+        .then((result) => {
             res.status(200).send({
                 result: true,
-                room_id : result.dataValues.room_id,
+                room_id: result.dataValues.room_id,
             });
         })
         .catch((err) => {
@@ -23,6 +23,23 @@ router.post("/create", async (req, res) => {
                 result: false,
                 message: "방생성에 실패했습니다",
             });
+        });
+});
+
+// 자신의 채팅방 리스트 요청
+router.post('/', (req, res) => {
+    models.Chat.findAll({
+        where: { to: req.body.user_id },
+    })
+        .then((result) => {
+            res.status(200).json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send({
+                result: false,
+                message: "채팅방 조회에 실패했습니다",
+            })
         });
 });
 
