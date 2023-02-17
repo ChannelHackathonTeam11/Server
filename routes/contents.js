@@ -174,6 +174,17 @@ router.post('/like', async (req, res, next) => {
         });
 });
 
+// 욕설 감지
+router.post('/curse', async (req, res, next) => {
+
+   
+
+    console.log(res);
+});
+
+
+
+
 
 
 module.exports = router;
