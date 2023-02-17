@@ -66,7 +66,6 @@ io.on('connection', (socket) => {
   console.log(`유저가 들어왔습니다 : ${socket.id}`);
 
   socket.on("join_room", async (data) => {
-    console.log(`조인할때 : ${data.room_id} `);
     socket.join(data.room_id);
 
     let result = await models.Chat.findOne({
@@ -75,7 +74,6 @@ io.on('connection', (socket) => {
 
     io.to(data.room_id).emit("join_room", result.dataValues);
 
-    console.log(result.dataValues);
     console.log(`유저의 아이디 : ${socket.id} 가 ${data}방에 들어옴`);
 
   });
@@ -83,7 +81,7 @@ io.on('connection', (socket) => {
   socket.on("send_message", async (data) => {
 
     console.log(`메세지보낼때 : ${data} `);
-    socket.to(data.room_id).emit("receive_message", data);
+    socket.broadcast.to(data.room_id).emit("receive_message", data);
 
     let result = await models.Chat.findOne({
       where: { room_id: data.room_id },
