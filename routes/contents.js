@@ -68,6 +68,12 @@ router.get('/summary', async (req, res, next) => {
                 next(err);
             })
     }
+    else
+    {
+        res.status(500).json({
+            result: false,
+        });
+    }
     
     
 });
