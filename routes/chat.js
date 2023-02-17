@@ -40,25 +40,16 @@ router.post('/list', async(req, res) => {
             from: req.body.user_id,
         },
     });
-    from : req.body.user_id,
 
+    console.log(user_to);
+    console.log(user_from);
+    // const user_to_image = await models.User.findOne({
+    //     where: { 
+    //         to: req.body.user_id,
+    //     },
+    // });
+    
 
-    models.Chat.findAll({
-        where: { 
-            to: req.body.user_id,
-            from : req.body.user_id,
-        },
-    })
-        .then((result) => {
-            res.status(200).json(result);
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).send({
-                result: false,
-                message: "채팅방 조회에 실패했습니다",
-            })
-        });
 });
 
 //  조인할때 채팅저장 

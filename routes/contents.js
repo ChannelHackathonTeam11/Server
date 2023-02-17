@@ -25,6 +25,7 @@ router.get('/summary', async (req, res, next) => {
             'user_image',
             'lng',
             'lat',
+            'uuid',
         ]
     })
         .then((data) => {
