@@ -66,13 +66,12 @@ io.on('connection', (socket) => {
   console.log(`유저가 들어왔습니다 : ${socket.id}`);
 
   socket.on("join_room", async (data) => {
-    console.log(`조인할때 : ${data} `);
-    socket.join(data);
+    console.log(`조인할때 : ${data.room_id} `);
+    socket.join(data.room_id);
 
     let result = await models.Chat.findOne({
-      where: { room_id: data },
+      where: { room_id: data.room_id },
     });
-
 
     socket.to(data).emit("join_room", result.dataValues);
 
