@@ -170,9 +170,10 @@ router.post('/like', async (req, res, next) => {
 router.post('/curse', async (req, res, next) => {
 
 
+    console.log(res.ServerResponse.req);
 
+    console.log("나는",res.ServerResponse.req.IncomingMessage.body);
 
-    console.log(res);
 });
 
 
