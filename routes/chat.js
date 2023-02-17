@@ -41,18 +41,35 @@ router.post('/list', async(req, res) => {
         },
     });
 
+    const arr =[]
+
     for (const key in user_from) {
-        console.log(user_from[key]);
+
+        const user_id = user_from[key].dataValues.to
+
+        const user_image = await models.User.findOne({
+            where: { 
+                user_id: user_id,
+            },
+        });
+
+        arr.push({user_id, user_image});
     }
 
-    // console.log(user_from[0]);
-    // console.log(user_from[1]);
+    for (const key in user_to) {
 
-    // const user_to_image = await models.User.findOne({
-    //     where: { 
-    //         to: req.body.user_id,
-    //     },
-    // });
+        const user_id = user_to[key].dataValues.from
+
+        const user_image = await models.User.findOne({
+            where: { 
+                user_id: user_id,
+            },
+        });
+
+        arr.push({user_id, user_image});
+    }
+    
+    res.status(200).json(arr);
     
 
 });
