@@ -96,7 +96,6 @@ io.on('connection', (socket) => {
     let messageInfo = result.dataValues.message;
     messageInfo = messageInfo ? messageInfo : []
 
-    // data.push(messageInfo);
     messageInfo = [...messageInfo, text]
 
     const combined = { message: messageInfo }

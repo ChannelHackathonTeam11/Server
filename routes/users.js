@@ -49,7 +49,6 @@ router.post("/register", async (req, res) => {
   const userInfo = {
     user_id: req.body.user_id,
     password: req.body.password,
-    name: req.body.name,
     user_image: req.body.user_image,
   };
   models.User.create(userInfo)
