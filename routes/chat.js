@@ -61,7 +61,7 @@ router.post('/list', async(req, res) => {
     for (const key in user_to) {
 
         const user_id = user_to[key].dataValues.from
-        const room_id = user_from[key].dataValues.room_id
+        const room_id = user_to[key].dataValues.room_id
 
         const user_image = await models.User.findOne({
             where: { 
