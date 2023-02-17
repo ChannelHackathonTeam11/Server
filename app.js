@@ -80,8 +80,8 @@ io.on('connection', (socket) => {
 
   socket.on("send_message", async (data) => {
 
-    console.log(`메세지보낼때 : ${JSON.parse(data)} `);
-    
+    console.log(`메세지보낼때 : ${(data.room_id)}`);
+
     socket.broadcast.to(data.room_id).emit("receive_message", data);
 
     let result = await models.Chat.findOne({
