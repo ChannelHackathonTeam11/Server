@@ -73,9 +73,9 @@ io.on('connection', (socket) => {
 
 
 // test front
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "public", "test.html"));
-// });
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "test.html"));
+});
 
 server.listen(3000, () => {
   console.log("소켓서버 실행 중..");
