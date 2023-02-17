@@ -14,6 +14,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors : {
     origin : '*',
+    credentials: true,
     // methods : ["GET","POST", "PUT"],
   },
 });
@@ -84,10 +85,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "test.html"));
 });
 
-// server.listen(3000, () => {
-//   console.log("소켓서버 실행 중..");
-// })
+server.listen(3000, () => {
+  console.log("소켓서버 실행 중..");
+})
 
-app.listen(3000, () => {
-  console.log("Express App on port 3000!");
-});
+// app.listen(3000, () => {
+//   console.log("Express App on port 3000!");
+// });
