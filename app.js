@@ -66,6 +66,7 @@ io.on('connection', (socket) => {
   console.log(`유저가 들어왔습니다 : ${socket.id}`);
 
   socket.on("join_room", async (data) => {
+    console.log(`조인할때 : ${data} `);
     socket.join(data);
 
     let result = await models.Chat.findOne({
@@ -81,6 +82,8 @@ io.on('connection', (socket) => {
   });
 
   socket.on("send_message", async (data) => {
+
+    console.log(`메세지보낼때 : ${data} `);
     socket.to(data.room_id).emit("receive_message", data);
 
     let result = await models.Chat.findOne({
