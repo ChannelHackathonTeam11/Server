@@ -89,6 +89,31 @@ router.post("/write", async (req, res) => {
     });
 });
 
+// 좋아요 누르기
+router.post('/like', async(req, res, next) => {
+
+    let like = await models.Contents.findOne({
+        where: { uuid:  req.body.uuid },
+    });
+    
+    await models.Contents.update({
+        like: like.like + 1,
+      },
+        {
+          where: { uuid: req.body.uuid },
+        })
+        .then((result) => {
+          res.status(200).json({
+           result : true,
+           data : result,
+          }
+          );
+        })
+        .catch((err) => {
+          console.error(err);
+          next(err);
+        });
+});
 
 
 
