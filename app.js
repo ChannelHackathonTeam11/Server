@@ -42,6 +42,7 @@ sequelize
 
 // 라우터
 app.use("/users", require("./routes/users")); // 유저
+app.use("/chat", require("./routes/chat")); // 채팅
 app.use("/contents", require("./routes/contents")); // 유저
 app.use("/images", require("./routes/images")); // 이미지
 

@@ -35,13 +35,17 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false
     },
-    longitude: {
+    lng: {
       type: DataTypes.DECIMAL(40,20),
       allowNull: false
     },
-    latitude: {
+    lat: {
       type: DataTypes.DECIMAL(40,20),
       allowNull: false
+    },
+    check: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,
