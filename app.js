@@ -24,8 +24,6 @@ require('dotenv').config();  //.env 파일에서 환경변수 가져오기
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(cors({
   origin: '*',
   credentials: 'true'
@@ -43,7 +41,9 @@ sequelize
 
 // 라우터
 app.use("/users", require("./routes/users")); // 유저
+app.use("/contents", require("./routes/contents")); // 유저
 app.use("/images", require("./routes/images")); // 이미지
+
 
 app.use(express.static('public'))
 app.use(express.static('./public/css'))

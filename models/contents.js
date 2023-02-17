@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     user_image: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(300),
       allowNull: true
     },
     title: {
@@ -24,17 +24,29 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     text_image: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(300),
       allowNull: true
     },
     like: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    created_time: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    longitude: {
+      type: DataTypes.DECIMAL(40,20),
+      allowNull: false
+    },
+    latitude: {
+      type: DataTypes.DECIMAL(40,20),
+      allowNull: false
     }
   }, {
     sequelize,
     tableName: 'contents',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",

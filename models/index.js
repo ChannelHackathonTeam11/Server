@@ -11,6 +11,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.User = require('./user')(sequelize, Sequelize);
-
+db.Contents  = require('./contents')(sequelize, Sequelize);
 module.exports = db;
 
