@@ -87,7 +87,7 @@ io.on('connection', (socket) => {
       where: { room_id: data.room_id },
     });
 
-    let data = {
+    let text = {
       user_id: data.user_id,
       contents: data.contents
     }
@@ -96,7 +96,7 @@ io.on('connection', (socket) => {
     messageInfo = messageInfo ? messageInfo : []
 
     // data.push(messageInfo);
-    messageInfo = [...messageInfo, data]
+    messageInfo = [...messageInfo, text]
 
     const combined = { message: messageInfo }
     result.update(combined)
