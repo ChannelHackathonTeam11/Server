@@ -87,7 +87,7 @@ io.on('connection', (socket) => {
       where: { room_id: data.room_id },
     });
 
-    let text = {
+    let data = {
       user_id: data.user_id,
       contents: data.contents
     }
