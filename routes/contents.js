@@ -7,8 +7,8 @@ router.get('/', (req, res, next) => {
     models.Contents.findAll()
         .then((data) => {
             res.status(200).json({
-                result : true,
-                data : data,
+                result: true,
+                data: data,
             });
         })
         .catch((err) => {
@@ -18,19 +18,19 @@ router.get('/', (req, res, next) => {
 });
 
 // 유저 이미지, 제목, 위도, 경도만 조회
-router.get('/summary', async(req, res, next) => {
+router.get('/summary', async (req, res, next) => {
     await models.Contents.findAll({
         attributes: [
             'title',
             'user_image',
-            'longitude',
-            'latitude',
+            'lng',
+            'lat',
         ]
     })
         .then((data) => {
             res.status(200).json({
-                result : true,
-                data : data,
+                result: true,
+                data: data,
             });
         })
         .catch((err) => {
@@ -38,6 +38,8 @@ router.get('/summary', async(req, res, next) => {
             next(err);
         })
 });
+
+
 
 
 module.exports = router;
