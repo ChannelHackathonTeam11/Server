@@ -41,8 +41,13 @@ router.post('/list', async(req, res) => {
         },
     });
 
-    console.log(user_to);
-    console.log(user_from);
+    for (const key in user_from) {
+        console.log(user_from[key]);
+    }
+
+    // console.log(user_from[0]);
+    // console.log(user_from[1]);
+
     // const user_to_image = await models.User.findOne({
     //     where: { 
     //         to: req.body.user_id,

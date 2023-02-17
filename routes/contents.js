@@ -41,7 +41,7 @@ router.get('/summary', async (req, res, next) => {
 });
 
 // 마커 클릭시 본문 내용
-router.get('/main', (req, res, next) => {
+router.post('/main', (req, res, next) => {
     models.Contents.findOne({
         where : {uuid : req.body.uuid}
     })
