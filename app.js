@@ -24,7 +24,9 @@ require('dotenv').config();  //.env 파일에서 환경변수 가져오기
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
+app.use(cors({
+  origin: '*', // 모든 출처 허용 옵션. true 를 써도 된다.
+}));
 
 // db연결
 sequelize
