@@ -12,6 +12,8 @@ router.post("/create", async (req, res) => {
     };
     models.Chat.create(roomInfo)
         .then((result) => {
+
+            console.log(result.dataValues.room_id);
             res.status(200).send({
                 result: true,
                 room_id: result.dataValues.room_id,
