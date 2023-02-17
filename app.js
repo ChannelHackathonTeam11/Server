@@ -8,12 +8,13 @@ const { Server } = require('socket.io');
 const http = require('http');
 const fs = require('fs');
 
+const models = require("./models");
 
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors : {
-    origin : '*',
+  cors: {
+    origin: '*',
     credentials: true,
     // methods : ["GET","POST", "PUT"],
   },
@@ -64,13 +65,47 @@ io.on('connection', (socket) => {
 
   console.log(`유저가 들어왔습니다 : ${socket.id}`);
 
-  socket.on("join_room", (data) => {
+  socket.on("join_room", async (data) => {
     socket.join(data);
+
+    let result = await models.Chat.findOne({
+      where: { room_id: data },
+    });
+
+
+    socket.to(data).emit("join_room", result.dataValues);
+
+    console.log(result.dataValues);
     console.log(`유저의 아이디 : ${socket.id} 가 ${data}방에 들어옴`);
+
   });
 
-  socket.on("send_message" , (data) => {
-    socket.to(data.room).emit("receive_message", data);
+  socket.on("send_message", async (data) => {
+    socket.to(data.room_id).emit("receive_message", data);
+
+    let result = await models.Chat.findOne({
+      where: { room_id: data.room_id },
+    });
+
+    let text = {
+      user_id: data.user_id,
+      contents: data.contents
+    }
+
+    let messageInfo = result.dataValues.message;
+    messageInfo = messageInfo ? messageInfo : []
+
+    // data.push(messageInfo);
+    messageInfo = [...messageInfo, data]
+
+    const combined = { message: messageInfo }
+    result.update(combined)
+      .then((result) => {
+        console.log(result)
+      })
+      .catch((err) => {
+        console.log("여기서 에러");
+      })
   })
 
   // 퇴장

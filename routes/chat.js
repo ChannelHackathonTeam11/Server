@@ -43,5 +43,36 @@ router.post('/', (req, res) => {
         });
 });
 
+//  조인할때 채팅저장 
+router.post("/test", async (req, res) => {
+
+    let result = await models.Chat.findOne({
+        where: { room_id: req.body.room_id },
+    });
+
+    let data = {
+        user_id: req.body.user_id,
+        contents: req.body.contents
+    }
+    
+    let messageInfo = result.dataValues.message;
+
+    messageInfo = messageInfo?messageInfo:[]
+
+    // data.push(messageInfo);
+    messageInfo = [...messageInfo,data]
+
+    const combined = {message : messageInfo}
+
+    result.update(combined)
+        .then((result) => {
+            console.log(result)
+            res.status(200).json(result);
+        })
+        .catch((err) => {
+            console.log("여기서 에러");
+        })
+});
+
 
 module.exports = router;
