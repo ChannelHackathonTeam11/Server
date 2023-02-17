@@ -11,10 +11,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    user_image: {
-      type: DataTypes.STRING(300),
-      allowNull: true
-    },
     title: {
       type: DataTypes.STRING(45),
       allowNull: true
@@ -33,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     created_time: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     lng: {
       type: DataTypes.DECIMAL(40,20),

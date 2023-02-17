@@ -27,9 +27,27 @@ router.post("/create", async (req, res) => {
 });
 
 // 자신의 채팅방 리스트 요청
-router.post('/', (req, res) => {
+router.post('/list', async(req, res) => {
+
+    const user_to = await models.Chat.findAll({
+        where: { 
+            to: req.body.user_id,
+        },
+    });
+
+    const user_from = await models.Chat.findAll({
+        where: { 
+            from: req.body.user_id,
+        },
+    });
+    from : req.body.user_id,
+
+
     models.Chat.findAll({
-        where: { to: req.body.user_id },
+        where: { 
+            to: req.body.user_id,
+            from : req.body.user_id,
+        },
     })
         .then((result) => {
             res.status(200).json(result);
@@ -73,6 +91,9 @@ router.post("/test", async (req, res) => {
             console.log("여기서 에러");
         })
 });
+
+
+
 
 
 module.exports = router;
