@@ -52,18 +52,8 @@ app.use(express.static('public'))
 app.use(express.static('./public/css'))
 app.use(express.static('./public/js'))
 
-// app.all('/*', function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//   next();
-// });
-
-
-// test chat
 
 io.on('connection', (socket) => {
-
-  console.log(`유저가 들어왔습니다 : ${socket.id}`);
 
   socket.on("join_room", async (data) => {
     socket.join(data.room_id);
@@ -79,8 +69,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on("send_message", async (data) => {
-
-    console.log(`메세지보낼때 : ${(data.room_id)}`);
 
     socket.broadcast.emit("receive_message", data);
 
@@ -124,7 +112,3 @@ app.get("/", (req, res) => {
 server.listen(3000, () => {
   console.log("소켓서버 실행 중..");
 })
-
-// app.listen(3000, () => {
-//   console.log("Express App on port 3000!");
-// });

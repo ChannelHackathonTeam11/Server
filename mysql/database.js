@@ -1,10 +1,10 @@
 const mysql = require('mysql');
-
+require('dotenv').config();  
 
 const connection = mysql.createConnection({
-    host:'hackathonserver.cynr3skzai4u.ap-northeast-2.rds.amazonaws.com',
-    user:'root',
-    password:'00000000',
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USERNAME,
+    password:process.env.DATABASE_PASSWORD,
     port:'3306',
     database:'hackathondb'
 });
