@@ -93,7 +93,6 @@ router.post("/test", async (req, res) => {
 
     messageInfo = messageInfo?messageInfo:[]
 
-    // data.push(messageInfo);
     messageInfo = [...messageInfo,data]
 
     const combined = {message : messageInfo}

@@ -48,10 +48,6 @@ app.use("/contents", require("./routes/contents")); // 유저
 app.use("/images", require("./routes/images")); // 이미지
 
 
-app.use(express.static('public'))
-app.use(express.static('./public/css'))
-app.use(express.static('./public/js'))
-
 
 io.on('connection', (socket) => {
 
@@ -92,7 +88,7 @@ io.on('connection', (socket) => {
         console.log(result)
       })
       .catch((err) => {
-        console.log("여기서 에러");
+        console.log("채팅 저장 에러");
       })
   })
 
@@ -103,11 +99,6 @@ io.on('connection', (socket) => {
   });
 })
 
-
-// test front
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "test.html"));
-});
 
 server.listen(3000, () => {
   console.log("소켓서버 실행 중..");
