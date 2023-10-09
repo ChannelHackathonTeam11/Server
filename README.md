@@ -65,45 +65,26 @@
 - 2023.02.17일 - 2023.02.18일
 
 ## 👬 팀 소개
-- 홍영환 - 백엔드(Firebase) , <a href="https://github.com/rong5026/animal_user">
-유저매칭 웹(React)
-</a> , 동물상 모델 제작 (Teachable Machine)<br>
-- 조준희 - <a href="https://github.com/AnimalFaceProject/animal_front">
-동물상 측정 웹(React)
-</a>, 동물상 모델 제작 (Teachable Machine)
+- 홍영환 - 백엔드(Node / Express.js) 
 
 ## 📌 프로젝트 메인 페이지
 
-|<img src="https://github.com/En-soso-com/Android/assets/77156858/8f73007e-c011-4b52-909d-c2288b7fe213" height="400" width="100%" >|<img src="https://github.com/En-soso-com/Android/assets/77156858/d6347840-4882-4c48-a2c1-439d100a4255" height="400" width="100%"> |<img src="https://github.com/En-soso-com/Android/assets/77156858/6e689579-1e00-4860-93c9-41977e50d961" height="400" width="100%"> |
-|:---:|:---:|:---:|
-|시작 화면|미팅 참여 화면|매칭 결과 화면|
+|<img src="https://github.com/ChannelHackathonTeam11/Server/assets/77156858/6a83290e-3c10-476e-9e40-f611ad806efe" height="100%" width="100%" >|<img src="https://github.com/ChannelHackathonTeam11/Server/assets/77156858/9bfb29dc-72a5-4cc3-8fba-8e2c3f432826" height="100%" width="100%" > |
+|:---:|:---:|
+|지도|게시글 작성|
 
-## 📌 프로젝트 안내 페이지
+|<img src="https://github.com/ChannelHackathonTeam11/Server/assets/77156858/6ee65377-d3d3-4b2f-a072-7e4d0034c2aa" height="100%" width="100%" >|<img src="https://github.com/ChannelHackathonTeam11/Server/assets/77156858/6e35239c-6fa4-42d1-8b06-9ac6057b8002" height="100%" width="100%" > |
+|:---:|:---:|
+|좋아요 및 채팅|채팅 기능|
 
-|<img src="https://github.com/En-soso-com/Android/assets/77156858/c9fd6046-57d9-4138-8119-851625443e53" height="400" width="100%" >|<img src="https://github.com/En-soso-com/Android/assets/77156858/ad5f62a7-b9ff-45dc-bfe2-5c0b64afe2ac" height="400" width="100%"> |<img src="https://github.com/En-soso-com/Android/assets/77156858/8029984b-6ca2-4a5e-be5b-cd6d17b8123f" height="400" width="100%"> |
-|:---:|:---:|:---:|
-|미팅 안내1|미팅 안내2|미팅 안내3|
+## 📡 Socket 설계도
+<img src="https://github.com/ChannelHackathonTeam11/Server/assets/77156858/7681e2c3-e088-4102-9dbf-9ba8510fc91a" height="100%" width="100%" >
+
+## 🛠️ 아쉬웠던점
+- 하루만에 서비스를 개발해야 하다보니 시간이 너무 부족했었습니다.
+- AWS EC2로 배포를 하였었는데 Github Action을 사용하지 않고 진행한 탓에 재배포하는 시간이 오래걸려 불편했었습니다.
+- Firebase로 서버를 구축하고 배포를 했다면 더욱 더 시간을 줄일 수 잇었겠다는 아쉬움이 남았습니다. ( 이후 동물상 미팅 프로젝트를 진행하며 Firebase를 이용한 배포를 진행해 보았습니다.)
 
  
-##  💾 백엔드 
-|<img src="https://github.com/AnimalFaceProject/animal_user/assets/77156858/89cc43da-9595-4dbb-927a-a46ab12f783f" height="400" width="100%" >|<img src="https://github.com/AnimalFaceProject/animal_user/assets/77156858/d113c323-e6f1-4b78-bfc4-9a07d881a5ca" height="400" width="100%" > |
-|:---:|:---:|
-|Firbase 사용1|Firbase 사용2|
-
-|<img src="https://github.com/AnimalFaceProject/animal_user/assets/77156858/f9ae7b30-a51a-405a-a998-58c5f2711101" height="400" width="100%">|<img src="https://github.com/AnimalFaceProject/animal_user/assets/77156858/8d4b7aaa-cae3-4527-aa42-39bed357129b" height="400" width="100%"> |
-|:---:|:---:|
-|Firbase 사용3|테이블 구조|
-## ⚙️ 개발 환경
-- `Node.js 20.3.0`
-- `Npm 9.6.7`
-- `React 18.2.0`
-## 시작 가이드
-
-    $ git clone https://github.com/AnimalFaceProject/animal_user.git
-    $ cd animal_user
-    $ npm install
-    $ npm start
-
-
 </hr>
 
